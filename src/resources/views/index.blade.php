@@ -91,8 +91,10 @@
             <td class="contact-table__input-category">
                 <select name="category" class="contact-table__select">
                     <option value="">選択してください</option>
-                    <option value="ご質問" {{ old('category', session('contact.category')) == 'ご質問' ? 'selected' : '' }}>ご質問</option>
-                    <option value="ご意見" {{ old('category', session('contact.category')) == 'ご意見' ? 'selected' : '' }}>ご意見</option>
+                    <option value="商品のお届けについて" {{ old('category', session('contact.category')) == '商品のお届けについて' ? 'selected' : '' }}>商品のお届けについて</option>
+                    <option value="商品の交換について" {{ old('category', session('contact.category')) == '商品の交換について' ? 'selected' : '' }}>商品の交換について</option>
+                    <option value="商品トラブル" {{ old('category', session('contact.category')) == '商品トラブル' ? 'selected' : '' }}>商品トラブル</option>
+                    <option value="ショップへの問い合わせ" {{ old('category', session('contact.category')) == 'ショップへの問い合わせ' ? 'selected' : '' }}>ショップへの問い合わせ</option>
                     <option value="その他" {{ old('category', session('contact.category')) == 'その他' ? 'selected' : '' }}>その他</option>
                 </select>
                 @error('category')

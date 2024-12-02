@@ -40,6 +40,12 @@
                         @enderror
                     </div>
                 </div>
+                <div class="register-form__input">
+                    <div class="register-fom__input-pass_confirmation">
+                        <div class="input-label">パスワード確認</div>
+                        <input type="password" name="password_confirmation" class="input-pass" placeholder="確認用パスワード">
+                    </div>
+                </div>
                 <div class="register-form__button">
                     <button type="submit" class="register-form__button-submit">登録</button>
                 </div>

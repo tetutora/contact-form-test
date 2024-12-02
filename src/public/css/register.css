@@ -1,10 +1,10 @@
-html,
-body {
-    background-color: #f6ecdd;
-}
-
 header {
     background-color: transparent;
+}
+
+.register__content{
+    background-color: #f6ecdd;
+    padding: 100px;
 }
 
 .register-form {

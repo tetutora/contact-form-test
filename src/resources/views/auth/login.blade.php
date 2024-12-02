@@ -11,7 +11,7 @@
             <p>Login</p>
         </div>
         <div class="login-form">
-            <form class="login-form__inner" action="/register" method="post">
+            <form class="login-form__inner" action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="login-form__input">
                     <div class="login-fom__input-email">

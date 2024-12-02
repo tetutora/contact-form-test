@@ -12,6 +12,16 @@
     <header class="header">
         <div class="header__inner">
             <a href="/" class="header__logo">Fashionably Late</a>
+            <!-- 新規登録ページの時のみナビゲーションを表示 -->
+            @if (request()->is('register'))
+                <nav class="login-nav">
+                    <ul class="header-nav">
+                        <li class="header-nav__item">
+                            <a class="header-nav__link" href="/login">login</a>
+                        </li>
+                    </ul>
+                </nav>
+            @endif
         </div>
     </header>
 

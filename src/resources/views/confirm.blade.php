@@ -50,12 +50,11 @@
                     </td>
                 </tr>
                 <tr class="confirm-table__row">
-    <th class="confirm-table__header">お問い合せの種類</th>
-    <td class="confirm-table__input">
-        <input class="confirm-table__input-category" type="text" name="category" value="{{ $contact['category_name'] ?? '' }}" readonly>
-    </td>
-</tr>
-
+                    <th class="confirm-table__header">お問い合せの種類</th>
+                    <td class="confirm-table__input">
+                        <input class="confirm-table__input-category" type="text" name="category" value="{{ $contact['category_name'] ?? '' }}" readonly>
+                    </td>
+                </tr>
                 <tr class="confirm-table__row">
                     <th class="confirm-table__header">お問い合せ内容</th>
                     <td class="confirm-table__input">
