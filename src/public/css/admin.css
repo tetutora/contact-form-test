@@ -107,7 +107,7 @@
 
 .data-table {
     max-width: 1230px;
-    margin: 50px 0;
+    margin: 30px 0;
 }
 
 .data-table__inner {
@@ -120,32 +120,138 @@ tr:first-child {
 }
 
 .data-table__row {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
     height: 60px;
     border-bottom: 1px solid gainsboro;
     border-right: 1px solid gainsboro;
     border-left: 1px solid gainsboro;
 }
 
-.data-table__header {
+
+
+.data-table__header-name{
+    width: 15%;
+    color: white;
+    margin: auto;
+}
+.data-table__header-gender {
+    width: 5%;
+    color: white;
+    margin: auto;
+}
+.data-table__header-email {
+    width: 20%;
+    color: white;
+    margin: auto;
+}
+.data-table__header-category {
+    width: 15%;
+    color: white;
+    margin: auto;
+}
+.data-table__header-button {
+    width: 10%;
     color: white;
     margin: auto;
 }
 
-td {
-    margin: auto;
+.data-table__name{
+    width: 20%;
+}
+
+.data-table__name{
+    width: 15%;
+    text-align: center;
+    color: #8B7969;
+}
+
+.data-table__gender{
+    width: 5%;
+    text-align: center;
+    color: #8B7969;
+}
+
+.data-table__email{
+    width: 20%;
+    text-align: center;
+    color: #8B7969;
+}
+
+.data-table__category_id{
+    width: 15%;
+    text-align: center;
     color: #8B7969;
 }
 
 .table__button {
-    width: 5%;
+    width: 10%;
+    text-align: center;
+    color: #8B7969;
 }
 
+
 .data-table__button {
-    width: 100%;
+    width: 40%;
     height: 30px;
     border-color: #D9C6B5;
     color: #D9C6B5;
     background-color: transparent;
+}
+
+
+.Pagination {
+    max-width: 1230px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.pagination-list {
+    width: 100%;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination-item {
+    margin: 10px 0;
+    margin-left: 0px;
+}
+
+.pagination-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border: solid 1px gainsboro;
+    font-size: 14px;
+    background: white;
+    color: #8B7969;
+    font-weight: bold;
+    transition: all 0.15s linear;
+    text-decoration: none;
+}
+
+.pagination-link.isActive {
+    background: #8B7969;
+    color: white;
+    pointer-events: none;
+}
+
+.pagination-link:not(.isActive):hover {
+    background: #8B7969;
+    color: white;
+}
+
+.pagination-item.disabled .pagination-link {
+    background: white;
+    color: #8B7969;
+}
+
+.pagination-item.active .pagination-link {
+    background: white;
+        color: #8B7969;
 }

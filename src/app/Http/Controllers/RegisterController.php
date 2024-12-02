@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RegisterRequest;
 
 
 
@@ -16,15 +17,8 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        // バリデーション
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
-
         // ユーザー登録
         $user = User::create([
             'name' => $request->name,
@@ -36,6 +30,6 @@ class RegisterController extends Controller
         Auth::login($user);
 
         // 管理画面にリダイレクト
-        return redirect()->route('admin');
+        return redirect()->route('login');
     }
 }

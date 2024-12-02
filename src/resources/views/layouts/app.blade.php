@@ -22,6 +22,16 @@
                     </ul>
                 </nav>
             @endif
+            <!-- 新規登録ページの時のみナビゲーションを表示 -->
+            @if (request()->is('login'))
+                <nav class="login-nav">
+                    <ul class="header-nav">
+                        <li class="header-nav__item">
+                            <a class="header-nav__link" href="/register">register</a>
+                        </li>
+                    </ul>
+                </nav>
+            @endif
         </div>
     </header>
 

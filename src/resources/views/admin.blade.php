@@ -33,12 +33,12 @@
                 </div>
                 <div class="search-select__category">
                     <select class="select__category" name="category" id="">
-                        <option value="">お問い合せの種類</option>
-                        <option value="1">商品のお届けについて</option>
-                        <option value="2">商品の交換について</option>
-                        <option value="3">商品トラブル</option>
-                        <option value="3">ショップへのお問い合わせ</option>
-                        <option value="3">その他</option>
+                        <option value="1">お問い合せの種類</option>
+                        <option value="2">商品のお届けについて</option>
+                        <option value="3">商品の交換について</option>
+                        <option value="4">商品トラブル</option>
+                        <option value="5">ショップへのお問い合わせ</option>
+                        <option value="6">その他</option>
                     </select>
                 </div>
                 <div class="search-data">
@@ -54,32 +54,38 @@
     </div>
     <div class="pagination-container">
         <div class="Pagination">
-        {{ $contacts->links() }}
+        {{ $contacts->links('vendor.pagenation.custom') }}
         </div>
     </div>
 
     <div class="data-table">
         <table class="data-table__inner">
             <tr class="data-table__row">
-                <th class="data-table__header">お名前</th>
-                <th class="data-table__header">性別</th>
-                <th class="data-table__header">メールアドレス</th>
-                <th class="data-table__header">お問い合せの種類</th>
-                <th class="data-table__header"></th>
+                <th class="data-table__header-name">お名前</th>
+                <th class="data-table__header-gender">性別</th>
+                <th class="data-table__header-email">メールアドレス</th>
+                <th class="data-table__header-category">お問い合せの種類</th>
+                <th class="data-table__header-button"></th>
             </tr>
             @foreach ($contacts as $contact)
             <tr class="data-table__row">
-                <td class="data-table__name">{{ $contact->last_name }} {{ $contact->first_name }}</td>
+                <td class="data-table__name">
+                    {{ $contact->last_name }} {{ $contact->first_name }}
+                </td>
                 <td class="data-table__gender">
                     @if ($contact->gender == 1) 男性
                     @elseif ($contact->gender == 2) 女性
                     @else その他
                     @endif
                 </td>
-                <td class="data-table__email">{{ $contact->email }}</td>
+                <td class="data-table__email">
+                    {{ $contact->email }}
+                </td>
                 <td class="data-table__category_id">
-                    @if ($contact->category_id == 1) ご質問
-                    @elseif ($contact->category_id == 2) ご意見
+                    @if ($contact->category_id == 1) 商品のお届けについて
+                    @elseif ($contact->category_id == 2) 商品の交換について
+                    @elseif ($contact->category_id == 3) 商品トラブル
+                    @elseif ($contact->category_id == 4) ショップへの問い合わせ
                     @else その他
                     @endif
                 </td>
