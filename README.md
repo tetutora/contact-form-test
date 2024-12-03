@@ -1,4 +1,18 @@
 # FashionablyLate
+<<<<<<< HEAD
+=======
+
+
+## 環境構築
+
+- 1.ディレクトリの作成
+- 2.Docker-compose.ymlの作成
+- 3.Nginxの設定
+- 4.PHPの設定
+- 5.MySQLの設定
+- 6.phpMyAdminの設定
+- 7.docker-compose　コマンドでビルド
+>>>>>>> bf48846d87a3f3751d6ded505f186f6a0989b1d3
 
 ## 環境構築
 - 1.https://github.com/tetutora/contact-form-test
