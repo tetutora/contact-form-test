@@ -1,48 +1,23 @@
 # FashionablyLate
 
-
 ## 環境構築
+- 1.https://github.com/tetutora/contact-form-test
+- 2.Dockerのビルド  docker-compose up -d --build
+- 3.PHPコンテナの起動  docker-compose exec php bash
+- 4.マイグレーションの実行  php artisan migrate
+- 5.シーディングの実行  php artisan db:seed
+- 6.完了
 
-- 1.ディレクトリの作成
-- 2.Docker-compose.ymlの作成
-- 3.Nginxの設定
-- 4.PHPの設定
-- 5.MySQLの設定
-- 6.phpMyAdminの設定
-- 7.docker-compose　コマンドでビルド
+## 使用技術（実行環境）
+- ・Laravel 8.x (PHP フレームワーク)
+- ・MySQL 8.x (データベース)
+- ・Nginx (Web サーバー)
+- ・PHP 7.4 (PHP 実行環境)
+- ・Docker (開発環境のコンテナ管理)
 
-1.https://github.com/tetutora/test-contact-form
+## ER図
 
-2.docker-compose up -d --build
+![表示](./test.drawio.svg)
 
-※MySQLは、OSによって起動しない場合があるのでそれぞれのPCに合わせてdocker-compose.ymlファイルを編集してください。
-
-
-Laravel環境構築
-
-1.docker-compose exec php bash
-
-2.composer install
-
-3..env.exampleファイルから.envを作成し環境変数を変更
-
-4.php artisan key:generate
-
-5.php artisan migrate
-
-6.php artisan db:seed
-
-
-使用技術
-
-  ・PHP 8.0
-  ・Laravel 10.0
-  ・MySQL 8.0
-
-
-URL
-
-   ・開発環境： http://localhost/
-
-   ・phpMyAdmin： http//localhost:8080/
-
+## URL
+- 開発環境: http://localhost
