@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
 
 
 class LoginController extends Controller
@@ -13,9 +14,8 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        // バリデーション
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {

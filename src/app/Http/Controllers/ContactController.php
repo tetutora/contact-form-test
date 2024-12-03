@@ -23,6 +23,10 @@ class ContactController extends Controller
             'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail'
         ]);
 
+        // $contact['gender_name'] = $this->getGenderName($contact['gender']);
+        // $contact['gender'] = $this->getGenderId($contact['gender']);
+
+        $contact['gender_name'] = $contact['gender'];
         $contact['gender'] = $this->getGenderId($contact['gender']);
 
         $categoryId = $this->getCategoryId($contact['category_id']);
@@ -45,7 +49,8 @@ class ContactController extends Controller
             'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail'
         ]);
 
-        $contact['gender'] = $this->getGenderId($contact['gender']);
+        $contact['gender'] = $this->getGenderId($contact['gender_name']);
+        // $contact['gender'] = $this->getGenderId($contact['gender']);
 
         $categoryId = $this->getCategoryId($contact['category']);
         $contact['category_id'] = $categoryId;
@@ -54,7 +59,21 @@ class ContactController extends Controller
 
         $request->session()->put('contact', $contact);
 
-        Contact::create($contact);
+        // Contact::create($contact);
+
+        Contact::create([
+        'last_name' => $contact['last_name'],
+        'first_name' => $contact['first_name'],
+        'gender' => $contact['gender'],  // 性別を整数で保存
+        'email' => $contact['email'],
+        'tel1' => $contact['tel1'],
+        'tel2' => $contact['tel2'],
+        'tel3' => $contact['tel3'],
+        'address' => $contact['address'],
+        'building' => $contact['building'],
+        'category_id' => $contact['category_id'],
+        'detail' => $contact['detail'],
+    ]);
 
 
         return view('confirm', compact('contact'));
@@ -74,6 +93,20 @@ class ContactController extends Controller
         }
     }
 
+    private function getGenderName($genderId)
+    {
+        switch ($genderId) {
+            case 1:
+                return '男性';
+            case 2:
+                return '女性';
+            case 3:
+                return 'その他';
+            default:
+                return '不明'; // 万が一性別が不正な場合
+    }
+}
+
     private function getCategoryId($categoryName)
     {
         $category = Category::where('content', $categoryName)->first();
@@ -82,7 +115,7 @@ class ContactController extends Controller
     public function getCategoryName($categoryId)
     {
         $category = Category::find($categoryId);
-        return $category ? $category->content : 'カテゴリなし'; // カテゴリが見つからない場合は「カテゴリなし」を返す
+        return $category ? $category->content : 'カテゴリなし';
     }
 
 

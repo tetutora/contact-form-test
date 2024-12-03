@@ -11,16 +11,13 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        // クエリビルダーを初期化
         $query = Contact::query();
 
-        // 検索条件を取得
         $keyword = $request->input('keyword');
         $gender = $request->input('gender');
         $category = $request->input('category');
         $date = $request->input('date');
 
-        // keywordがあれば、last_name と first_name と email に対してLIKE検索を実施
         if ($keyword) {
             $query->where(function ($q) use ($keyword) {
                 $q->where('last_name', 'like', '%' . $keyword . '%')
@@ -29,28 +26,23 @@ class AdminController extends Controller
             });
         }
 
-        // 性別での検索
         if ($gender && $gender != '0') {
         $query->where('gender', $gender);
         }
 
-        // お問い合せの種類での検索
         if ($category) {
             $query->where('category_id', $category);
         }
 
-        // 日付での検索
         if ($date) {
             $query->whereDate('created_at', $date);
         }
 
-        // ページネーションを追加
         $contacts = $query->paginate(7);
 
-        // ビューにcontactsを渡す
         return view('admin', compact('contacts'));
     }
-    
+
     public function show($id)
     {
         $contact = Contact::findOrFail($id);
@@ -91,7 +83,6 @@ class AdminController extends Controller
 
     public function export(Request $request)
     {
-        // 現在の検索条件をそのまま使ってエクスポートする
         $query = Contact::query();
 
         $keyword = $request->input('keyword');
@@ -119,7 +110,7 @@ class AdminController extends Controller
             $query->whereDate('created_at', $date);
         }
 
-        $contacts = $query->get();  // エクスポート用に全てのデータを取得
+        $contacts = $query->get();
 
         return Excel::download(new ContactsExport($contacts), 'contacts.xlsx');
     }

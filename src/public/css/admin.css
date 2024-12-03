@@ -197,6 +197,7 @@ tr:first-child {
     border-color: #D9C6B5;
     color: #D9C6B5;
     background-color: transparent;
+    cursor: pointer;
 }
 
 
@@ -298,6 +299,7 @@ tr:first-child {
     background-color: red;
     color: white;
     border: none;
+    cursor: pointer;
 
 }
 

@@ -46,7 +46,7 @@ span {
 }
 
 .contact-table__input-last-name {
-    width: 40%;
+    width: 45%;
     border: none;
     background-color: #F4F4F4;
     font-size: 20px;
@@ -55,7 +55,7 @@ span {
 }
 
 .contact-table__input-first-name {
-    width: 40%;
+    width: 45%;
     border: none;
     background-color: #F4F4F4;
     font-size: 20px;
