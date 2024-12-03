@@ -18,15 +18,17 @@ class ContactController extends Controller
         $contact = $request->only([
             'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail'
         ]);
-        session(['contact' => $contact]);
 
-        // カテゴリーIDからカテゴリー名を取得し、確認用にセット
+        dd($contact);
+
+        $categoryId = $request->session()->get('contact.category_id');
+        $contact['category_id'] = $categoryId;
+
         if (!empty($contact['category_id'])) {
             $category = \App\Models\Category::find($contact['category_id']);
             $contact['category_name'] = $category ? $category->content : '';
         }
 
-        // 確認画面を表示
         return view('confirm', compact('contact'));
     }
 
@@ -36,23 +38,30 @@ class ContactController extends Controller
         'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category', 'detail'
     ]);
 
-        // genderを文字列から数値に変換
         $contact['gender'] = $this->getGenderId($contact['gender']);
 
-        // categoryの変換
         $categoryId = $this->getCategoryId($contact['category']);
         $contact['category_id'] = $categoryId;
 
-        // category_nameの設定
         $contact['category_name'] = $this->getCategoryName($categoryId);
 
-        // セッションに保存
         $request->session()->put('contact', $contact);
 
-        // DBに保存
-        Contact::create($contact);
+        Contact::create([
+            'last_name' => $contact['last_name'],
+            'first_name' => $contact['first_name'],
+            'gender' => $contact['gender'],
+            'email' => $contact['email'],
+            'tel1' => $contact['tel1'],
+            'tel2' => $contact['tel2'],
+            'tel3' => $contact['tel3'],
+            'address' => $contact['address'],
+            'building' => $contact['building'],
+            'category_id' => $contact['category_id'],
+            'detail' => $contact['detail'],
+        ]);
 
-        // 確認画面に遷移
+
         return view('confirm', compact('contact'));
     }
 
