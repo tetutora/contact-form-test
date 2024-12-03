@@ -19,9 +19,6 @@ class ContactController extends Controller
 
     public function confirm(ContactRequest $request)
     {
-        // $contact = $request->session()->get('contact');
-        // dd($contact);
-
         $contact = $request->only([
             'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail'
         ]);
@@ -52,51 +49,31 @@ class ContactController extends Controller
 
         $request->session()->put('contact', $contact);
 
-        dd($request->session()->get('contact'));
-
-        Contact::create([
-            'last_name' => $contact['last_name'],
-            'first_name' => $contact['first_name'],
-            'gender' => $contact['gender'],
-            'email' => $contact['email'],
-            'tel1' => $contact['tel1'],
-            'tel2' => $contact['tel2'],
-            'tel3' => $contact['tel3'],
-            'address' => $contact['address'],
-            'building' => $contact['building'],
-            'category_id' => $contact['category_id'],
-            'detail' => $contact['detail'],
-        ]);
+        Contact::create($contact);
 
 
         return view('confirm', compact('contact'));
     }
 
-    // public function submit(Request $request)
-    // {
-    //     // セッションからデータを取得
-    //     $contact = session('contact');
+    private function getGenderId($gender)
+    {
+        switch ($gender) {
+            case '男性':
+                return 1;
+            case '女性':
+                return 2;
+            case 'その他':
+                return 3;
+            default:
+                return null;
+        }
+    }
 
-    //     // データベースに保存
-    //     Contact::create([
-    //         'last_name' => $contact['last_name'],
-    //         'first_name' => $contact['first_name'],
-    //         'gender' => $contact['gender'],
-    //         'email' => $contact['email'],
-    //         'tel1' => $contact['tel1'],
-    //         'tel2' => $contact['tel2'],
-    //         'tel3' => $contact['tel3'],
-    //         'address' => $contact['address'],
-    //         'building' => $contact['building'],
-    //         'category_id' => $contact['category'],
-    //         'detail' => $contact['detail'],
-    //     ]);
+    private function getCategoryId($categoryName)
+    {
+        $category = Category::where('content', $categoryName)->first();
+        return $category ? $category->id : null;
+    }
 
-    //     // セッションデータをクリア
-    //     $request->session()->forget('contact');
-
-    //     // 完了画面へリダイレクト
-    //     return redirect()->route('thanks');
-    // }
 
 }

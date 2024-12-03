@@ -10,6 +10,9 @@ use App\Exports\ContactsExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 
+// use App\Http\Controllers\TestController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,3 +60,12 @@ Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.exp
 Route::get('/export', function () {
     $contacts = App\Models\Contact::all();
 });
+
+
+
+
+// Route::controller(TestController::class)->group(function ()
+// {
+//     Route::get('/test','test');
+//     Route::post('/test','store');
+// });
