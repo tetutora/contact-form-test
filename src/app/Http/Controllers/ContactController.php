@@ -5,21 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use App\Models\Category;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $contacts = Contact::with('category')->get();
+        $categories = Category::all();
+
+        return view('index',compact('contacts','categories'));
     }
 
     public function confirm(ContactRequest $request)
     {
+        // $contact = $request->session()->get('contact');
+        // dd($contact);
+
         $contact = $request->only([
             'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail'
         ]);
-
-        dd($contact);
 
         $categoryId = $request->session()->get('contact.category_id');
         $contact['category_id'] = $categoryId;
@@ -34,9 +39,9 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-    $contact = $request->only([
-        'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category', 'detail'
-    ]);
+        $contact = $request->only([
+            'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail'
+        ]);
 
         $contact['gender'] = $this->getGenderId($contact['gender']);
 
@@ -46,6 +51,8 @@ class ContactController extends Controller
         $contact['category_name'] = $this->getCategoryName($categoryId);
 
         $request->session()->put('contact', $contact);
+
+        dd($request->session()->get('contact'));
 
         Contact::create([
             'last_name' => $contact['last_name'],

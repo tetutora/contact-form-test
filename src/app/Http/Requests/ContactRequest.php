@@ -32,7 +32,7 @@ class ContactRequest extends FormRequest
             'tel2' => 'required',
             'tel3' => 'required',
             'address' => 'required',
-            'category' => 'required',
+            'category_id' => 'required',
             'detail' => 'required|max:120',
         ];
     }
@@ -49,7 +49,7 @@ class ContactRequest extends FormRequest
             'tel2.required' => '電話番号は5桁までの数字で入力してください',
             'tel3.required' => '電話番号は5桁までの数字で入力してください',
             'address.required' => '住所を入力してください',
-            'category.required' => 'お問い合せの種類を選択してください',
+            'category_id.required' => 'お問い合せの種類を選択してください',
             'detail.required' => 'お問い合せ内容を入力してください',
             'detail.max' => 'お問い合わせ内容は:max文字以内で入力してください'
         ];

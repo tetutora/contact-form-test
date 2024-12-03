@@ -89,15 +89,15 @@
         <tr class="contact-table__row">
             <th class="contact-table__header">お問い合せの種類<span>※</span></th>
             <td class="contact-table__input-category">
-                <select name="category" class="contact-table__select">
+                <select name="category_id" class="contact-table__select">
                     <option value="">選択してください</option>
-                    <option value="商品のお届けについて" {{ old('category', session('contact.category')) == '商品のお届けについて' ? 'selected' : '' }}>商品のお届けについて</option>
-                    <option value="商品の交換について" {{ old('category', session('contact.category')) == '商品の交換について' ? 'selected' : '' }}>商品の交換について</option>
-                    <option value="商品トラブル" {{ old('category', session('contact.category')) == '商品トラブル' ? 'selected' : '' }}>商品トラブル</option>
-                    <option value="ショップへのお問い合わせ" {{ old('category', session('contact.category')) == 'ショップへのお問い合わせ' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
-                    <option value="その他" {{ old('category', session('contact.category')) == 'その他' ? 'selected' : '' }}>その他</option>
+                    <option value="商品のお届けについて" {{ old('category_id', session('contact.category_id')) == '商品のお届けについて' ? 'selected' : '' }}>商品のお届けについて</option>
+                    <option value="商品の交換について" {{ old('category_id', session('contact.category_id')) == '商品の交換について' ? 'selected' : '' }}>商品の交換について</option>
+                    <option value="商品トラブル" {{ old('category_id', session('contact.category_id')) == '商品トラブル' ? 'selected' : '' }}>商品トラブル</option>
+                    <option value="ショップへのお問い合わせ" {{ old('category_id', session('contact.category_id')) == 'ショップへのお問い合わせ' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
+                    <option value="その他" {{ old('category_id', session('contact.category_id')) == 'その他' ? 'selected' : '' }}>その他</option>
                 </select>
-                @error('category')
+                @error('category_id')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </td>
