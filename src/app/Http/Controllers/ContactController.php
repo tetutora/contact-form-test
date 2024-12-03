@@ -23,15 +23,29 @@ class ContactController extends Controller
             'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail'
         ]);
 
-        $categoryId = $request->session()->get('contact.category_id');
+        $contact['gender'] = $this->getGenderId($contact['gender']);
+
+        $categoryId = $this->getCategoryId($contact['category_id']);
         $contact['category_id'] = $categoryId;
 
-        if (!empty($contact['category_id'])) {
-            $category = \App\Models\Category::find($contact['category_id']);
-            $contact['category_name'] = $category ? $category->content : '';
-        }
+        $contact['category_name'] = $this->getCategoryName($categoryId);
+
+        $request->session()->put('contact', $contact);
+
+        Contact::create($contact);
+
 
         return view('confirm', compact('contact'));
+
+        // $categoryId = $request->session()->get('contact.category_id');
+        // $contact['category_id'] = $categoryId;
+
+        // if (!empty($contact['category_id'])) {
+        //     $category = \App\Models\Category::find($contact['category_id']);
+        //     $contact['category_name'] = $category ? $category->content : '';
+        // }
+
+        // return view('confirm', compact('contact'));
     }
 
     public function store(ContactRequest $request)
@@ -73,6 +87,11 @@ class ContactController extends Controller
     {
         $category = Category::where('content', $categoryName)->first();
         return $category ? $category->id : null;
+    }
+    public function getCategoryName($categoryId)
+    {
+        $category = Category::find($categoryId);
+        return $category ? $category->content : 'カテゴリなし'; // カテゴリが見つからない場合は「カテゴリなし」を返す
     }
 
 
