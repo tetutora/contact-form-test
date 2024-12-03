@@ -23,14 +23,14 @@ use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', [ContactController::class, 'index']);
 Route::post('/confirm', [ContactController::class, 'confirm']);
-// Route::post('/submit', [ContactController::class, 'store'])->name('contact.submit');
-Route::post('/admin', [ContactController::class, 'store'])->name('contact.submit');
+Route::post('/thanks',[ContactController::class,'store']);
 Route::get('/thanks', function () {
     return view('thanks');
 });
 Route::post('/thanks', function () {
     return view('thanks');
 });
+Route::post('/admin', [ContactController::class, 'store'])->name('contact.submit');
 
 
 // 新規登録ルート
@@ -47,10 +47,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    // admin という名前のルートを定義
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 });
-
 Route::get('/admin/{id}', [AdminController::class, 'show']);
 Route::delete('/admin/{id}', [AdminController::class, 'destroy']);
 Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');

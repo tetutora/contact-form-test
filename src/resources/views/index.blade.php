@@ -94,7 +94,7 @@
                     <option value="商品のお届けについて" {{ old('category', session('contact.category')) == '商品のお届けについて' ? 'selected' : '' }}>商品のお届けについて</option>
                     <option value="商品の交換について" {{ old('category', session('contact.category')) == '商品の交換について' ? 'selected' : '' }}>商品の交換について</option>
                     <option value="商品トラブル" {{ old('category', session('contact.category')) == '商品トラブル' ? 'selected' : '' }}>商品トラブル</option>
-                    <option value="ショップへの問い合わせ" {{ old('category', session('contact.category')) == 'ショップへの問い合わせ' ? 'selected' : '' }}>ショップへの問い合わせ</option>
+                    <option value="ショップへのお問い合わせ" {{ old('category', session('contact.category')) == 'ショップへのお問い合わせ' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
                     <option value="その他" {{ old('category', session('contact.category')) == 'その他' ? 'selected' : '' }}>その他</option>
                 </select>
                 @error('category')
