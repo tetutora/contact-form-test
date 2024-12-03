@@ -49,15 +49,17 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('admin/export', [AdminController::class, 'export'])->middleware('auth')->name('admin.export');
 });
 Route::get('/admin/{id}', [AdminController::class, 'show']);
 Route::delete('/admin/{id}', [AdminController::class, 'destroy']);
-Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
 
 
 Route::get('/export', function () {
     $contacts = App\Models\Contact::all();
 });
+
+
 
 
 

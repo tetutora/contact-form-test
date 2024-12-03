@@ -51,9 +51,10 @@
         {{ $contacts->links('vendor.pagenation.custom') }}
         </div>
     </div>
-    <a href="{{ route('admin.export') }}">
-        <button type="button" class="export-button">エクスポート</button>
-    </a>
+    <a href="{{ route('admin.export', ['keyword' => request('keyword'), 'gender' => request('gender'), 'category' => request('category'), 'date' => request('date')]) }}">
+    <button type="button" class="export-button">エクスポート</button>
+</a>
+
 
     <div class="data-table">
         <table class="data-table__inner">

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ContactsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use League\Csv\Writer;
+use SplTempFileObject;
 
 class AdminController extends Controller
 {
@@ -41,6 +43,19 @@ class AdminController extends Controller
         $contacts = $query->paginate(7);
 
         return view('admin', compact('contacts'));
+
+        foreach ($contacts as $contact) {
+            $csv->insertOne([
+                $contact->last_name . ' ' . $contact->first_name,
+                $this->getGenderName($contact->gender),
+                $contact->email,
+                $this->getCategoryName($contact->category_id),
+                $contact->detail
+            ]);
+        }
+        return response((string) $csv)
+            ->header('Content-Type', 'text/csv')
+            ->header('Content-Disposition', 'attachment; filename="contacts_export.csv"');
     }
 
     public function show($id)
@@ -114,4 +129,6 @@ class AdminController extends Controller
 
         return Excel::download(new ContactsExport($contacts), 'contacts.xlsx');
     }
+
+    
 }

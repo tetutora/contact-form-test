@@ -1,10 +1,12 @@
-<?
+<?php
+
+// App/Exports/ContactsExport.php
 namespace App\Exports;
 
+use App\Models\Contact;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+
 
 class ContactsExport implements FromCollection, WithHeadings
 {
@@ -17,27 +19,11 @@ class ContactsExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        return $this->contacts->map(function ($contact) {
-            return [
-                $contact->last_name,
-                $contact->first_name,
-                $contact->email,
-                $contact->gender == 1 ? '男性' : ($contact->gender == 2 ? '女性' : 'その他'),
-                $contact->category_id, // このフィールドはカテゴリの名前に変換した方が良いかもしれません
-                $contact->created_at->format('Y-m-d H:i:s'),
-            ];
-        });
+        return $this->contacts;
     }
 
     public function headings(): array
     {
-        return [
-            '姓',
-            '名',
-            'メールアドレス',
-            '性別',
-            'カテゴリ',
-            '作成日',
-        ];
+        return ['お名前', '性別', 'メールアドレス', 'お問い合せの種類', '内容'];
     }
 }
