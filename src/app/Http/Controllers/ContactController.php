@@ -37,15 +37,6 @@ class ContactController extends Controller
 
         return view('confirm', compact('contact'));
 
-        // $categoryId = $request->session()->get('contact.category_id');
-        // $contact['category_id'] = $categoryId;
-
-        // if (!empty($contact['category_id'])) {
-        //     $category = \App\Models\Category::find($contact['category_id']);
-        //     $contact['category_name'] = $category ? $category->content : '';
-        // }
-
-        // return view('confirm', compact('contact'));
     }
 
     public function store(ContactRequest $request)
