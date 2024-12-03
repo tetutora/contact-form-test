@@ -10,7 +10,7 @@
         <p>Confirm</p>
     </div>
     <div class="confirm-table">
-        <form action="/thanks" method="get">
+        <form action="/thanks" method="post">
             @csrf
             <table class="confirm-table__inner">
                 <tr class="confirm-table__row">
