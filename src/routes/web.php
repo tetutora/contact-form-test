@@ -22,17 +22,23 @@ use Maatwebsite\Excel\Facades\Excel;
 |
 */
 
+// Route::controller(ContactController::class)->group(function()
+// {
+//     Route::get('/','index');
+//     Route::post('confirm','confirm');
+//     Route::post('thanks','store');
+//     Route::post('admin','store')->name('contact.submit');
+// });
+
+
 Route::get('/', [ContactController::class, 'index']);
 Route::post('/confirm', [ContactController::class, 'confirm']);
-Route::post('/thanks',[ContactController::class,'store']);
-Route::get('/thanks', function () {
+Route::get('/thanks', function ()
+{
     return view('thanks');
 });
-Route::post('/thanks', function () {
-    return view('thanks');
-});
+Route::post('/thanks', [ContactController::class, 'store']);
 Route::post('/admin', [ContactController::class, 'store'])->name('contact.submit');
-
 
 // 新規登録ルート
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -58,14 +64,3 @@ Route::delete('/admin/{id}', [AdminController::class, 'destroy']);
 Route::get('/export', function () {
     $contacts = App\Models\Contact::all();
 });
-
-
-
-
-
-
-// Route::controller(TestController::class)->group(function ()
-// {
-//     Route::get('/test','test');
-//     Route::post('/test','store');
-// });

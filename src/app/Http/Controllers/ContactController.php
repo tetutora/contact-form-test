@@ -23,11 +23,8 @@ class ContactController extends Controller
             'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail'
         ]);
 
-        // $contact['gender_name'] = $this->getGenderName($contact['gender']);
-        // $contact['gender'] = $this->getGenderId($contact['gender']);
-
-        $contact['gender_name'] = $contact['gender'];
         $contact['gender'] = $this->getGenderId($contact['gender']);
+        $contact['gender_name'] = $this->getGenderName($contact['gender']);
 
         $categoryId = $this->getCategoryId($contact['category_id']);
         $contact['category_id'] = $categoryId;
@@ -36,35 +33,19 @@ class ContactController extends Controller
 
         $request->session()->put('contact', $contact);
 
-        Contact::create($contact);
-
-
         return view('confirm', compact('contact'));
-
     }
 
-    public function store(ContactRequest $request)
-    {
-        $contact = $request->only([
-            'last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail'
-        ]);
+    public function store(Request $request)
+{
+    // セッションから連絡先データを取得
+    $contact = $request->session()->get('contact');
 
-        $contact['gender'] = $this->getGenderId($contact['gender_name']);
-        // $contact['gender'] = $this->getGenderId($contact['gender']);
-
-        $categoryId = $this->getCategoryId($contact['category']);
-        $contact['category_id'] = $categoryId;
-
-        $contact['category_name'] = $this->getCategoryName($categoryId);
-
-        $request->session()->put('contact', $contact);
-
-        // Contact::create($contact);
-
-        Contact::create([
+    // データベースに保存
+    Contact::create([
         'last_name' => $contact['last_name'],
         'first_name' => $contact['first_name'],
-        'gender' => $contact['gender'],  // 性別を整数で保存
+        'gender' => $contact['gender'],
         'email' => $contact['email'],
         'tel1' => $contact['tel1'],
         'tel2' => $contact['tel2'],
@@ -75,9 +56,12 @@ class ContactController extends Controller
         'detail' => $contact['detail'],
     ]);
 
+    // データベースに保存後、Thanksページを表示
+    return view('thanks', compact('contact'));
+}
 
-        return view('confirm', compact('contact'));
-    }
+
+
 
     private function getGenderId($gender)
     {
@@ -103,15 +87,16 @@ class ContactController extends Controller
             case 3:
                 return 'その他';
             default:
-                return '不明'; // 万が一性別が不正な場合
+                return '不明';
+        }
     }
-}
 
     private function getCategoryId($categoryName)
     {
         $category = Category::where('content', $categoryName)->first();
         return $category ? $category->id : null;
     }
+
     public function getCategoryName($categoryId)
     {
         $category = Category::find($categoryId);

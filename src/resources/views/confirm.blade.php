@@ -34,7 +34,7 @@
                 <tr class="confirm-table__row">
                     <th class="confirm-table__header">電話番号</th>
                     <td class="confirm-table__input">
-                        <input class="confirm-table__input-tel" type="text" name="tel" value="{{ $contact['tel1'] ?? '' }} {{ $contact['tel2'] ?? '' }} {{ $contact['tel3'] ?? '' }}" readonly>
+                        <input class="confirm-table__input-tel" type="text" name="tel" value="{{ $contact['tel1'] ?? '' }}-{{ $contact['tel2'] ?? '' }}-{{ $contact['tel3'] ?? '' }}" readonly>
                     </td>
                 </tr>
                 <tr class="confirm-table__row">
@@ -62,10 +62,16 @@
                     </td>
                 </tr>
             </table>
+
+            <!-- ここで隠しフィールドにセッションからのデータを含めて送信 -->
+            <input type="hidden" name="contact_data" value="{{ json_encode($contact) }}">
+
             <div class="confirm-table__button">
                 <button type="submit" class="confirm-table__button-submit">送信</button>
             </div>
         </form>
+
+        <!-- 修正ボタン -->
         <form action="/" method="get">
             @csrf
             <div class="confirm-table__button-correction">
