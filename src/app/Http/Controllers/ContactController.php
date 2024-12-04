@@ -37,31 +37,25 @@ class ContactController extends Controller
     }
 
     public function store(Request $request)
-{
-    // セッションから連絡先データを取得
-    $contact = $request->session()->get('contact');
+    {
+        $contact = $request->session()->get('contact');
 
-    // データベースに保存
-    Contact::create([
-        'last_name' => $contact['last_name'],
-        'first_name' => $contact['first_name'],
-        'gender' => $contact['gender'],
-        'email' => $contact['email'],
-        'tel1' => $contact['tel1'],
-        'tel2' => $contact['tel2'],
-        'tel3' => $contact['tel3'],
-        'address' => $contact['address'],
-        'building' => $contact['building'],
-        'category_id' => $contact['category_id'],
-        'detail' => $contact['detail'],
-    ]);
+        Contact::create([
+            'last_name' => $contact['last_name'],
+            'first_name' => $contact['first_name'],
+            'gender' => $contact['gender'],
+            'email' => $contact['email'],
+            'tel1' => $contact['tel1'],
+            'tel2' => $contact['tel2'],
+            'tel3' => $contact['tel3'],
+            'address' => $contact['address'],
+            'building' => $contact['building'],
+            'category_id' => $contact['category_id'],
+            'detail' => $contact['detail'],
+        ]);
 
-    // データベースに保存後、Thanksページを表示
-    return view('thanks', compact('contact'));
-}
-
-
-
+        return view('thanks', compact('contact'));
+    }
 
     private function getGenderId($gender)
     {
@@ -102,6 +96,5 @@ class ContactController extends Controller
         $category = Category::find($categoryId);
         return $category ? $category->content : 'カテゴリなし';
     }
-
 
 }

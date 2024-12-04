@@ -6,35 +6,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
-use App\Exports\ContactsExport;
-use Maatwebsite\Excel\Facades\Excel;
+// use Maatwebsite\Excel\Facades\Excel;
 
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::controller(ContactController::class)->group(function()
-// {
-//     Route::get('/','index');
-//     Route::post('confirm','confirm');
-//     Route::post('thanks','store');
-//     Route::post('admin','store')->name('contact.submit');
-// });
-
-
+// ルートの基本設定
 Route::get('/', [ContactController::class, 'index']);
 Route::post('/confirm', [ContactController::class, 'confirm']);
-Route::get('/thanks', function ()
-{
+Route::get('/thanks', function () {
     return view('thanks');
 });
 Route::post('/thanks', [ContactController::class, 'store']);
@@ -48,19 +25,16 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
-// 認証が必要な管理画面ルート
+// 認証が必要な管理画面ルート（`prefix` と `middleware` の両方を使う）
 Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin');  // 管理画面
+    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::get('/export', [AdminController::class, 'export'])->name('admin.export');
+    Route::get('/{id}', [AdminController::class, 'show']);
+    Route::delete('/{id}', [AdminController::class, 'destroy']);
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('admin/export', [AdminController::class, 'export'])->middleware('auth')->name('admin.export');
-});
-Route::get('/admin/{id}', [AdminController::class, 'show']);
-Route::delete('/admin/{id}', [AdminController::class, 'destroy']);
-
-
+// エクスポート機能（管理画面用）
 Route::get('/export', function () {
     $contacts = App\Models\Contact::all();
+
 });
