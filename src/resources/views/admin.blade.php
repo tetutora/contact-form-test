@@ -109,17 +109,12 @@
 </div>
 
 <script>
-    // モーダルを開く関数
     function openModal(button) {
-        // ボタンから取得したIDを使ってデータを取得する処理
         const contactId = button.getAttribute('data-id');
         currentContactId = contactId;
-
-        // ここでAjaxを使って、詳細情報をサーバーから取得する
         fetch(`/admin/${contactId}`)
             .then(response => response.json())
             .then(data => {
-                // モーダル内のコンテンツを更新
                 document.getElementById('modal-content').innerHTML = `
                     <p><strong>お名前:</strong> ${data.name}</p>
                     <p><strong>メールアドレス:</strong> ${data.email}</p>
@@ -128,9 +123,7 @@
                     <p><strong>住所:</strong> ${data.address}</p>
                     <p><strong>建物名:</strong> ${data.building}</p>
                     <p><strong>お問い合せの種類:</strong> ${data.category}</p>
-                    <p><strong>内容:</strong> ${data.detail}</p>
-                `;
-                // モーダルを表示
+                    <p><strong>内容:</strong> ${data.detail}</p>`;
                 document.getElementById('modal').style.display = 'block';
             })
             .catch(error => {
@@ -138,18 +131,16 @@
             });
     }
 
-    // モーダルを閉じる関数
     function closeModal() {
         document.getElementById('modal').style.display = 'none';
     }
 
-    // 削除ボタンをクリックしたときの処理
     function deleteContact() {
         if (currentContactId === null) {
             alert("削除対象が選択されていません");
             return;
         }
-        // サーバーに削除リクエストを送信
+
         fetch(`/admin/${currentContactId}`, {
             method: 'DELETE',
             headers: {
@@ -161,10 +152,8 @@
             if (response.ok) {
                 alert("削除しました");
 
-                // モーダルを閉じる
                 closeModal();
 
-                // ページをリロードして削除を反映させる
                 window.location.reload();
             } else {
                 alert("削除に失敗しました");
@@ -176,7 +165,6 @@
         });
     }
 
-    // モーダルの外をクリックした場合にも閉じる
     window.onclick = function(event) {
         if (event.target === document.getElementById('modal')) {
             closeModal();

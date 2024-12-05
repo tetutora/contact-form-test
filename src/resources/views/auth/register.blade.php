@@ -16,7 +16,7 @@
                 <div class="register-form__input">
                     <div class="register-fom__input-name">
                         <div class="input-label">お名前</div>
-                        <input type="text" name="name" class="input-name" placeholder="例:山田　太郎" value="{{ old('name') }}">
+                        <input type="text" name="name" class="input-name" placeholder="例:山田 太郎" value="{{ old('name') }}">
                         @error('name')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
