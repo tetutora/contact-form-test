@@ -25,14 +25,14 @@
                 <div class="login-form__input">
                     <div class="login-fom__input-pass">
                         <div class="input-label">パスワード</div>
-                        <input type="password" name="password" class="input-pass" placeholder="例:alskdjfhg">
+                        <input type="password" name="password" class="input-pass" placeholder="例:abc0efg0">
                         @error('password')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                <div class="register-form__button">
-                    <button type="submit" class="register-form__button-submit">ログイン</button>
+                <div class="login-form__button">
+                    <button type="submit" class="login-form__button-submit">ログイン</button>
                 </div>
             </form>
         </div>

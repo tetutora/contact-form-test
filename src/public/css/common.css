@@ -1,6 +1,7 @@
 .header {
     text-align: center;
-    background-color: transparent;
+    /* background-color: transparent; */
+    background-color: white;
 }
 
 .header__inner {
@@ -16,6 +17,9 @@
     color: #887969;
     text-decoration: none;
     font-size: 40px;
+    font-family: "Inika", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .login-nav {
@@ -40,4 +44,7 @@
     border: 1px solid gainsboro;
     color: #887969;
     font-size: 16px;
+    font-family: "Inika", serif;
+    font-weight: 400;
+    font-style: normal;
 }

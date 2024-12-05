@@ -62,17 +62,13 @@
                     </td>
                 </tr>
             </table>
-
-            <input type="hidden" name="contact_data" value="{{ json_encode($contact) }}">
-
             <div class="confirm-table__button">
                 <button type="submit" class="confirm-table__button-submit">送信</button>
             </div>
         </form>
-
         <form action="/" method="get">
             @csrf
-            <div class="confirm-table__button-correction">
+            <div class="confirm-table__button">
                 <button type="submit" class="confirm-table__button-correction-submit">修正</button>
             </div>
         </form>

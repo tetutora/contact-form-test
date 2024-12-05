@@ -5,7 +5,9 @@
 .contact-form__title {
     margin: 50px;
     font-size: 35px;
-    font-family: ;
+    font-family: "Inika", serif;
+    font-weight: 400;
+    font-style: normal;
     text-align: center;
     color: #8B7969;
 }

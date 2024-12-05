@@ -21,7 +21,10 @@ html {
 
 .thanks__content::before {
     content: "Thank You";
-    font-size: 150px;
+    font-size: 200px;
+    font-family: "Inika", serif;
+    font-weight: 400;
+    font-style: normal;
     color: rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 50%;
