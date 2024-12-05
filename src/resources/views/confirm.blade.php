@@ -63,7 +63,6 @@
                 </tr>
             </table>
 
-            <!-- ここで隠しフィールドにセッションからのデータを含めて送信 -->
             <input type="hidden" name="contact_data" value="{{ json_encode($contact) }}">
 
             <div class="confirm-table__button">
@@ -71,7 +70,6 @@
             </div>
         </form>
 
-        <!-- 修正ボタン -->
         <form action="/" method="get">
             @csrf
             <div class="confirm-table__button-correction">

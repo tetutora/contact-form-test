@@ -5,6 +5,7 @@
 .contact-form__title {
     margin: 50px;
     font-size: 35px;
+    font-family: ;
     text-align: center;
     color: #8B7969;
 }
@@ -174,7 +175,7 @@ span {
 
 .contact-form__button {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 40%;
     height: 40px;
     margin: auto;
@@ -188,17 +189,5 @@ span {
     font-size: 20px;
     background-color: #8B7969;
     color: white;
-    cursor: pointer;
-}
-
-.contact-form__button-reset {
-    width: 40%;
-    height: 40px;
-    border: none;
-    margin: 250px 0;
-    font-size: 20px;
-    background-color: transparent;
-    color: #8B7969;
-    text-decoration: underline;
     cursor: pointer;
 }
