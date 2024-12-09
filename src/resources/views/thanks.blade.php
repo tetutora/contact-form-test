@@ -12,8 +12,8 @@
     </div>
     <form action="/" method="get">
         <div class="thanks__button">
-        <button type="submit" class="thanks__button-submit">HOME</button>
-    </div>
+            <button type="submit" class="thanks__button-submit">HOME</button>
+        </div>
     </form>
 </body>
 </html>

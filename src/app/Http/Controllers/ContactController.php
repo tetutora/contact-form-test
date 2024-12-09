@@ -97,4 +97,8 @@ class ContactController extends Controller
         return $category ? $category->content : 'カテゴリなし';
     }
 
+    public function thanks(){
+        return view('thanks');
+    }
+
 }
