@@ -5,7 +5,9 @@
 - 2.Dockerのビルド  docker-compose up -d --build
 - 3.PHPコンテナの起動  docker-compose exec php bash
 - 4.マイグレーションの実行  php artisan migrate
-- 5.シーディングの実行  php artisan db:seed
+- 5.シーディングの実行
+-   php artisan db:seed --class=CategoriesSeeder
+-   php artisan db:seed --class=ContactsSeeder
 - 6.完了
 
 ## 使用技術（実行環境）
